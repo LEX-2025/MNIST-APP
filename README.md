@@ -1,45 +1,44 @@
-# C#¿ª·¢ÈË¹¤ÖÇÄÜÓ¦ÓÃ£ºÊ¹ÓÃSDCAËã½øĞĞMNIST ·ÖÀà
+# C#å¼€å‘äººå·¥æ™ºèƒ½åº”ç”¨ï¼šä½¿ç”¨SDCAç®—æ³• è¿›è¡ŒMNIST åˆ†ç±»
 
-| ML.NET version | API type          | Status                        | App Type    | Data type | Scenario            | ML Task                   | Algorithms                  |
-|----------------|-------------------|-------------------------------|-------------|-----------|---------------------|---------------------------|-----------------------------|
-| v1.4           | Dynamic API | Up-to-date | Console app | .csv files | MNIST classification | Multi-class classification | Sdca Multi-class |
 
-In this introductory sample, you'll see how to use [ML.NET](https://www.microsoft.com/net/learn/apps/machine-learning-and-ai/ml-dotnet) to classify handwritten digits from 0 to 9 using the MNIST dataset. This is a **multiclass classification** problem that we will solve using SDCA (Stochastic Dual Coordinate Ascent) algorithm.
+## å¼•è¨€ï¼š
+ML.NETæ˜¯.NET Foundation(.NETåŸºé‡‘ä¼š)çš„ä¸€ä¸ªé¡¹ç›®ï¼Œä¸ºå¼€å‘è€…æä¾›äº†åŸºäº.NETå¼€å‘è·¨å¹³å°æœºå™¨å­¦ä¹ åº”ç”¨çš„å¹³å°ã€‚ML.NET æ˜¯é¢å‘.NETå¼€å‘äººå‘˜çš„å¼€æºå’Œè·¨å¹³å°æœºå™¨å­¦ä¹ æ¡†æ¶ã€‚ ML.NET è¿˜åŒ…æ‹¬Model Builder ï¼ˆä¸€ä¸ªç®€å•çš„UIå·¥å…·ï¼‰å’Œ CLI ï¼Œä½¿ç”¨è‡ªåŠ¨æœºå™¨å­¦ä¹ ï¼ˆAutoMLï¼‰æ„å»ºè‡ªå®šä¹‰æœºå™¨å­¦ä¹ ï¼ˆMLï¼‰æ¨¡å‹å˜å¾—éå¸¸å®¹æ˜“ã€‚æœ¬ç¯‡æ–‡ç« å°†ä¼šä»‹ç»ML.NETå¼€å‘ç¯å¢ƒçš„å®‰è£…å’Œä½¿ç”¨SDCAç®—è¿›è¡ŒMNIST åˆ†ç±»ç¤ºä¾‹ã€‚
+å¼€å‘ç¯å¢ƒ
+1.å®‰è£…Visual Studio 
+å®‰è£…Visual Studio 2017 æ›´é«˜ç‰ˆæœ¬ï¼Œå»ºè®®å®‰è£… Visual Studio 2019ï¼ˆhttps://visualstudio.microsoft.com/zh-hans/vs/community/ï¼‰ï¼Œç¤¾åŒºç‰ˆæ˜¯å…è´¹çš„ï¼Œå®‰è£…çš„æ—¶å€™éœ€è¦é€‰æ‹©å®‰è£….NetCoreåŠŸèƒ½ã€‚
 
-## ÒıÑÔ£º
-ML.NETÊÇ.NET Foundation(.NET»ù½ğ»á)µÄÒ»¸öÏîÄ¿£¬Îª¿ª·¢ÕßÌá¹©ÁË»ùÓÚ.NET¿ª·¢¿çÆ½Ì¨»úÆ÷Ñ§Ï°Ó¦ÓÃµÄÆ½Ì¨¡£ML.NET ÊÇÃæÏò.NET¿ª·¢ÈËÔ±µÄ¿ªÔ´ºÍ¿çÆ½Ì¨»úÆ÷Ñ§Ï°¿ò¼Ü¡£ ML.NET »¹°üÀ¨Model Builder £¨Ò»¸ö¼òµ¥µÄUI¹¤¾ß£©ºÍ CLI £¬Ê¹ÓÃ×Ô¶¯»úÆ÷Ñ§Ï°£¨AutoML£©¹¹½¨×Ô¶¨Òå»úÆ÷Ñ§Ï°£¨ML£©Ä£ĞÍ±äµÃ·Ç³£ÈİÒ×¡£±¾ÆªÎÄÕÂ½«»á½éÉÜML.NET¿ª·¢»·¾³µÄ°²×°ºÍÊ¹ÓÃSDCAËã½øĞĞMNIST ·ÖÀàÊ¾Àı¡£
-¿ª·¢»·¾³
-1.°²×°Visual Studio 
-°²×°Visual Studio 2017 ¸ü¸ß°æ±¾£¬½¨Òé°²×° Visual Studio 2019£¨https://visualstudio.microsoft.com/zh-hans/vs/community/£©£¬ÉçÇø°æÊÇÃâ·ÑµÄ£¬°²×°µÄÊ±ºòĞèÒªÑ¡Ôñ°²×°.NetCore¹¦ÄÜ¡£
+2.å®‰è£…ML.netæ¨¡å‹ç”Ÿæˆå™¨
+æ¨¡å‹ç”Ÿæˆå™¨æ˜¯å¼€å‘äººå‘˜åœ¨å…¶ .NET åº”ç”¨ç¨‹åºä¸­æ„å»ºã€è®­ç»ƒå’Œè¿é€è‡ªå®šä¹‰æœºå™¨å­¦ä¹ æ¨¡å‹çš„ç®€å• UI å·¥å…·ã€‚æ²¡æœ‰ ML ä¸“ä¸šçŸ¥è¯†çš„å¼€å‘äººå‘˜å¯ä»¥ä½¿ç”¨ Visual Studio ä¸­çš„è¿™ä¸ªç®€å•çš„å¯è§†åŒ–ç•Œé¢è¿æ¥åˆ°å­˜å‚¨åœ¨æ–‡ä»¶æˆ– SQL Server ä¸­çš„æ•°æ®ï¼Œè®­ç»ƒæ¨¡å‹ï¼Œå¹¶ç”Ÿæˆç”¨äºæ¨¡å‹åŸ¹è®­å’Œä½¿ç”¨çš„ä»£ç ã€‚å®‰è£…ML.netæ¨¡å‹æ„å»ºå™¨ï¼ˆå¾®è½¯å®˜æ–¹ä¸‹è½½åœ°å€ ML.NET Model Builder toolï¼Œhttps://marketplace.visualstudio.com/items?itemName=MLNET.07ï¼‰ï¼Œä¸‹è½½ä»¥åç›´æ¥åŒå‡»å®‰è£…å³å¯ã€‚å®‰è£…éœ€è¦å…³é—­Visual Studioã€‚ä¹Ÿå¯é€šè¿‡Visual Studioä¸­çš„æ‰©å±•åŠŸèƒ½é€‰é¡¹å®‰è£…ã€‚å®‰è£…å®Œæˆåå·¥ç¨‹çš„ADDèœå•å°†ä¼šå‡ºç°Machine Learningé€‰é¡¹ã€‚
 
-2.°²×°ML.netÄ£ĞÍÉú³ÉÆ÷
-Ä£ĞÍÉú³ÉÆ÷ÊÇ¿ª·¢ÈËÔ±ÔÚÆä .NET Ó¦ÓÃ³ÌĞòÖĞ¹¹½¨¡¢ÑµÁ·ºÍÔËËÍ×Ô¶¨Òå»úÆ÷Ñ§Ï°Ä£ĞÍµÄ¼òµ¥ UI ¹¤¾ß¡£Ã»ÓĞ ML ×¨ÒµÖªÊ¶µÄ¿ª·¢ÈËÔ±¿ÉÒÔÊ¹ÓÃ Visual Studio ÖĞµÄÕâ¸ö¼òµ¥µÄ¿ÉÊÓ»¯½çÃæÁ¬½Óµ½´æ´¢ÔÚÎÄ¼ş»ò SQL Server ÖĞµÄÊı¾İ£¬ÑµÁ·Ä£ĞÍ£¬²¢Éú³ÉÓÃÓÚÄ£ĞÍÅàÑµºÍÊ¹ÓÃµÄ´úÂë¡£°²×°ML.netÄ£ĞÍ¹¹½¨Æ÷£¨Î¢Èí¹Ù·½ÏÂÔØµØÖ· ML.NET Model Builder tool£¬https://marketplace.visualstudio.com/items?itemName=MLNET.07£©£¬ÏÂÔØÒÔºóÖ±½ÓË«»÷°²×°¼´¿É¡£°²×°ĞèÒª¹Ø±ÕVisual Studio¡£Ò²¿ÉÍ¨¹ıVisual StudioÖĞµÄÀ©Õ¹¹¦ÄÜÑ¡Ïî°²×°¡£°²×°Íê³Éºó¹¤³ÌµÄADD²Ëµ¥½«»á³öÏÖMachine LearningÑ¡Ïî¡£
+3.æ–°å»ºC# å‘½ä»¤è¡Œé¡¹ç›® é€šè¿‡NuGetæ·»åŠ ç¨‹åºåŒ…
+æ–°å»ºä¸€ä¸ª.NET Coreå‘½ä»¤è¡Œç¨‹åºé¡¹ç›®
+åœ¨è§£å†³æ–¹æ¡ˆèµ„æºç®¡ç†å™¨é¡¹ç›®åç§°ä¸Šå•å‡»é¼ æ ‡å³é”®ï¼Œé€‰æ‹©â€œç®¡ç†NuGetç¨‹åºåŒ…â€
 
-## Ó¦ÓÃÊµÀı
-ÔÚ±¾Ê¾ÀıÖĞ£¬Äú½«ÁË½âÈçºÎÊ¹ÓÃ ML.NET½«MNIST Êı¾İ¼¯ÖĞµÄÊÖĞ´Êı×Ö½øĞĞ´Ó 0-9·ÖÀà¡£ÕâÊÇÒ»¸ö¶àÀà·ÖÀàÎÊÌâ£¬ÎÒÃÇ½«Ê¹ÓÃSDCA£¨Ëæ»úË«×ø±êÉÏÉı£©Ëã·¨À´½â¾ö¡£
-1.MNISTÊı¾İ¼¯
-MNIST Êı¾İ¼¯°üº¬Êı×ÖµÄÊÖĞ´Í¼Ïñ£¬·¶Î§´Ó 0 µ½ 9¡£Êı¾İÀ´Ô´£ºUCI »úÆ÷Ñ§Ï°´æ´¢¿âhttp://archive.ics.uci.edu/ml/datasets/Optical+Recognition+of+Handwritten+Digits
+## åº”ç”¨å®ä¾‹
+åœ¨æœ¬ç¤ºä¾‹ä¸­ï¼Œæ‚¨å°†äº†è§£å¦‚ä½•ä½¿ç”¨ ML.NETå°†MNIST æ•°æ®é›†ä¸­çš„æ‰‹å†™æ•°å­—è¿›è¡Œä» 0-9åˆ†ç±»ã€‚è¿™æ˜¯ä¸€ä¸ªå¤šç±»åˆ†ç±»é—®é¢˜ï¼Œæˆ‘ä»¬å°†ä½¿ç”¨SDCAï¼ˆéšæœºåŒåæ ‡ä¸Šå‡ï¼‰ç®—æ³•æ¥è§£å†³ã€‚
+1.MNISTæ•°æ®é›†
+MNIST æ•°æ®é›†åŒ…å«æ•°å­—çš„æ‰‹å†™å›¾åƒï¼ŒèŒƒå›´ä» 0 åˆ° 9ã€‚æ•°æ®æ¥æºï¼šUCI æœºå™¨å­¦ä¹ å­˜å‚¨åº“http://archive.ics.uci.edu/ml/datasets/Optical+Recognition+of+Handwritten+Digits
 
-ÎÒÃÇÊ¹ÓÃµÄ MNIST Êı¾İ¼¯°üº¬ 65 ÁĞÊı×Ö¡£Ã¿ĞĞµÄÇ° 64 ÁĞÊÇ 0 µ½ 16 ·¶Î§ÄÚµÄÕûÊıÖµ¡£ÕâĞ©ÖµµÄ¼ÆËã·½·¨ÊÇ½« 32 x 32 Î»Í¼»®·ÖÎª 4 x 4 µÄ·ÇÖØµş¿é¡£ON ÏñËØµÄÊıÁ¿ÔÚÃ¿¸ö¿éÖĞ¼ÆÊı£¬ÕâĞ©¿éÉú³É 8 x 8 µÄÊäÈë¾ØÕó¡£Ã¿ĞĞÖĞµÄ×îºóÒ»ÁĞÊÇÓÉÇ° 64 ÁĞÖĞµÄÖµ±íÊ¾µÄÊı×Ö¡£Ç° 64 ÁĞÊÇÎÒÃÇµÄ¹¦ÄÜ£¬ÎÒÃÇµÄ ML Ä£ĞÍ½«Ê¹ÓÃÕâĞ©¹¦ÄÜ¶Ô²âÊÔÍ¼Ïñ½øĞĞ·ÖÀà¡£ÎÒÃÇÅàÑµºÍÑéÖ¤Êı¾İ¼¯µÄ×îºóÒ»ÁĞÊÇ±êÇ© - ÎÒÃÇ½«Ê¹ÓÃ ML Ä£ĞÍÔ¤²âµÄÊµ¼ÊÊı×Ö¡£ÎÒÃÇ½«¹¹½¨µÄ ML Ä£ĞÍ½«·µ»Ø¸ø¶¨Í¼ÏñµÄ¸ÅÂÊ£¬¸ÃÍ¼ÏñÊÇ 0 µ½ 9 µÄÊı×ÖÖ®Ò»¡£
+æˆ‘ä»¬ä½¿ç”¨çš„ MNIST æ•°æ®é›†åŒ…å« 65 åˆ—æ•°å­—ã€‚æ¯è¡Œçš„å‰ 64 åˆ—æ˜¯ 0 åˆ° 16 èŒƒå›´å†…çš„æ•´æ•°å€¼ã€‚è¿™äº›å€¼çš„è®¡ç®—æ–¹æ³•æ˜¯å°† 32 x 32 ä½å›¾åˆ’åˆ†ä¸º 4 x 4 çš„éé‡å å—ã€‚ON åƒç´ çš„æ•°é‡åœ¨æ¯ä¸ªå—ä¸­è®¡æ•°ï¼Œè¿™äº›å—ç”Ÿæˆ 8 x 8 çš„è¾“å…¥çŸ©é˜µã€‚æ¯è¡Œä¸­çš„æœ€åä¸€åˆ—æ˜¯ç”±å‰ 64 åˆ—ä¸­çš„å€¼è¡¨ç¤ºçš„æ•°å­—ã€‚å‰ 64 åˆ—æ˜¯æˆ‘ä»¬çš„åŠŸèƒ½ï¼Œæˆ‘ä»¬çš„ ML æ¨¡å‹å°†ä½¿ç”¨è¿™äº›åŠŸèƒ½å¯¹æµ‹è¯•å›¾åƒè¿›è¡Œåˆ†ç±»ã€‚æˆ‘ä»¬åŸ¹è®­å’ŒéªŒè¯æ•°æ®é›†çš„æœ€åä¸€åˆ—æ˜¯æ ‡ç­¾ - æˆ‘ä»¬å°†ä½¿ç”¨ ML æ¨¡å‹é¢„æµ‹çš„å®é™…æ•°å­—ã€‚æˆ‘ä»¬å°†æ„å»ºçš„ ML æ¨¡å‹å°†è¿”å›ç»™å®šå›¾åƒçš„æ¦‚ç‡ï¼Œè¯¥å›¾åƒæ˜¯ 0 åˆ° 9 çš„æ•°å­—ä¹‹ä¸€ã€‚
 
-2.¹Ø¼ü´úÂë
-Ò»¸ö»úÆ÷Ñ§Ï°Ó¦ÓÃµÄ½¨Á¢ºÍÊ¹ÓÃ£º ĞèÒª¾­¹ı  ¹¹½¨-¡·ÑµÁ·-¡·ÆÀ¹À-¡·²¿Êğ ËÄ¸ö²½Öè¡£
-Òª½â¾öÊÖĞ´Êı×ÖÊ¶±ğÎÊÌâ£¬Ê×ÏÈÎÒÃÇ½«¹¹½¨Ò»¸ö ML Ä£ĞÍ¡£È»ºó£¬ÎÒÃÇ½«¸ù¾İÏÖÓĞÊı¾İ¶ÔÄ£ĞÍ½øĞĞÑµÁ·£¬ÆÀ¹ÀÆäÁ¼ºÃ³Ì¶È£¬×îºóÎÒÃÇ½«Ê¹ÓÃÄ£ĞÍÀ´Ô¤²â¸ø¶¨Í¼Ïñ±íÊ¾µÄÊı×Ö¡£
+2.å…³é”®ä»£ç 
+ä¸€ä¸ªæœºå™¨å­¦ä¹ åº”ç”¨çš„å»ºç«‹å’Œä½¿ç”¨ï¼š éœ€è¦ç»è¿‡  æ„å»º-ã€‹è®­ç»ƒ-ã€‹è¯„ä¼°-ã€‹éƒ¨ç½² å››ä¸ªæ­¥éª¤ã€‚
+è¦è§£å†³æ‰‹å†™æ•°å­—è¯†åˆ«é—®é¢˜ï¼Œé¦–å…ˆæˆ‘ä»¬å°†æ„å»ºä¸€ä¸ª ML æ¨¡å‹ã€‚ç„¶åï¼Œæˆ‘ä»¬å°†æ ¹æ®ç°æœ‰æ•°æ®å¯¹æ¨¡å‹è¿›è¡Œè®­ç»ƒï¼Œè¯„ä¼°å…¶è‰¯å¥½ç¨‹åº¦ï¼Œæœ€åæˆ‘ä»¬å°†ä½¿ç”¨æ¨¡å‹æ¥é¢„æµ‹ç»™å®šå›¾åƒè¡¨ç¤ºçš„æ•°å­—ã€‚
 
-¹Ø¼ü¶ÔÏó
+å…³é”®å¯¹è±¡
 ```CSharp
-            // MLContext Àà, ML.NETºËĞÄÀà£¬³õÊ¼»¯ºó »á´´½¨Ò»¸öĞÂµÄML.NETÔËËã»·¾³
-            //Ìá¹©ÁËÒ»ÖÖ´´½¨Êı¾İ×¼±¸¡¢¹¦ÄÜÒıÇæ¡¢ÑµÁ·¡¢Ô¤²â¡¢Ä£ĞÍÆÀ¹ÀµÄ×é¼şµÄ·½·¨¡£
-            //»¹ÔÊĞíÈÕÖ¾¼ÇÂ¼¡¢Ö´ĞĞ¿ØÖÆºÍÉèÖÃ¿ÉÖØ¸´µÄËæ»úÊıµÄÄÜÁ¦¡£
-            //¿ÉÔÚÄ£ĞÍ´´½¨¹¤×÷Á÷¶ÔÏóÖ®¼ä¹²Ïí¸Ã»·¾³¡£ 
+            // MLContext ç±», ML.NETæ ¸å¿ƒç±»ï¼Œåˆå§‹åŒ–å ä¼šåˆ›å»ºä¸€ä¸ªæ–°çš„ML.NETè¿ç®—ç¯å¢ƒ
+            //æä¾›äº†ä¸€ç§åˆ›å»ºæ•°æ®å‡†å¤‡ã€åŠŸèƒ½å¼•æ“ã€è®­ç»ƒã€é¢„æµ‹ã€æ¨¡å‹è¯„ä¼°çš„ç»„ä»¶çš„æ–¹æ³•ã€‚
+            //è¿˜å…è®¸æ—¥å¿—è®°å½•ã€æ‰§è¡Œæ§åˆ¶å’Œè®¾ç½®å¯é‡å¤çš„éšæœºæ•°çš„èƒ½åŠ›ã€‚
+            //å¯åœ¨æ¨¡å‹åˆ›å»ºå·¥ä½œæµå¯¹è±¡ä¹‹é—´å…±äº«è¯¥ç¯å¢ƒã€‚ 
             MLContext mlContext = new MLContext();
 ```
 
-Êı¾İ¼ÓÔØºÍÄ£ĞÍÑµÁ·£º
+æ•°æ®åŠ è½½å’Œæ¨¡å‹è®­ç»ƒï¼š
 ```CSharp
            try
             {
-                //²½Öè1£ºÍ¨ÓÃÊı¾İ¼ÓÔØÅäÖÃ
+                //æ­¥éª¤1ï¼šé€šç”¨æ•°æ®åŠ è½½é…ç½®
                 var trainData = mlContext.Data.LoadFromTextFile(path: TrainDataPath,
                         columns: new[]
                         {
@@ -49,7 +48,7 @@ MNIST Êı¾İ¼¯°üº¬Êı×ÖµÄÊÖĞ´Í¼Ïñ£¬·¶Î§´Ó 0 µ½ 9¡£Êı¾İÀ´Ô´£ºUCI »úÆ÷Ñ§Ï°´æ´¢¿âhttp:
                         hasHeader: false,
                         separatorChar: ','
                         );
-                Console.WriteLine(DateTime.Now.ToString() + " >> " + "=============== ¶ÁÈ¡ÑµÁ·Êı¾İ ===============");
+                Console.WriteLine(DateTime.Now.ToString() + " >> " + "=============== è¯»å–è®­ç»ƒæ•°æ® ===============");
 
                 var testData = mlContext.Data.LoadFromTextFile(path: TestDataPath,
                         columns: new[]
@@ -60,24 +59,24 @@ MNIST Êı¾İ¼¯°üº¬Êı×ÖµÄÊÖĞ´Í¼Ïñ£¬·¶Î§´Ó 0 µ½ 9¡£Êı¾İÀ´Ô´£ºUCI »úÆ÷Ñ§Ï°´æ´¢¿âhttp:
                         hasHeader: false,
                         separatorChar: ','
                         );
-                Console.WriteLine(DateTime.Now.ToString() + " >> " + "=============== ¶ÁÈ¡²âÊÔÊı¾İ ===============");
+                Console.WriteLine(DateTime.Now.ToString() + " >> " + "=============== è¯»å–æµ‹è¯•æ•°æ® ===============");
 
-                //²½Öè2£º¾ßÓĞ¹ÜµÀÊı¾İ×ª»»µÄÍ¨ÓÃÊı¾İ¹ı³ÌÅäÖÃ
-                //¶ÔÖĞĞ¡ĞÍÊı¾İ¼¯Ê¹ÓÃÄÚ´æÖĞ»º´æÒÔ¼õÉÙÑµÁ·Ê±¼ä¡£´¦Àí·Ç³£´óµÄÊı¾İ¼¯Ê±£¬ÇëÎğÊ¹ÓÃËü£¨É¾³ı.AppendCacheCheckpoint£¨£©£©¡£
+                //æ­¥éª¤2ï¼šå…·æœ‰ç®¡é“æ•°æ®è½¬æ¢çš„é€šç”¨æ•°æ®è¿‡ç¨‹é…ç½®
+                //å¯¹ä¸­å°å‹æ•°æ®é›†ä½¿ç”¨å†…å­˜ä¸­ç¼“å­˜ä»¥å‡å°‘è®­ç»ƒæ—¶é—´ã€‚å¤„ç†éå¸¸å¤§çš„æ•°æ®é›†æ—¶ï¼Œè¯·å‹¿ä½¿ç”¨å®ƒï¼ˆåˆ é™¤.AppendCacheCheckpointï¼ˆï¼‰ï¼‰ã€‚
                 var dataProcessPipeline = mlContext.Transforms.Conversion.MapValueToKey("Label", "Number", keyOrdinality: ValueToKeyMappingEstimator.KeyOrdinality.ByValue).
                     Append(mlContext.Transforms.Concatenate("Features", nameof(InputData.PixelValues)).AppendCacheCheckpoint(mlContext));
 
 
-                //²½Öè3£ºÉèÖÃÑµÁ·Ëã·¨£¬È»ºó´´½¨²¢ÅäÖÃmodelBuilder
+                //æ­¥éª¤3ï¼šè®¾ç½®è®­ç»ƒç®—æ³•ï¼Œç„¶ååˆ›å»ºå¹¶é…ç½®modelBuilder
                 var trainer = mlContext.MulticlassClassification.Trainers.SdcaMaximumEntropy(labelColumnName: "Label", featureColumnName: "Features");
                 var trainingPipeline = dataProcessPipeline.Append(trainer).Append(mlContext.Transforms.Conversion.MapKeyToValue("Number", "Label"));
 
 
-                //²½Öè4£ºÑµÁ·Ä£ĞÍÄâºÏÊı¾İ¼¯
-                Console.WriteLine(DateTime.Now.ToString() + " >> " + "=============== ÑµÁ·Ä£ĞÍ ===============");
+                //æ­¥éª¤4ï¼šè®­ç»ƒæ¨¡å‹æ‹Ÿåˆæ•°æ®é›†
+                Console.WriteLine(DateTime.Now.ToString() + " >> " + "=============== è®­ç»ƒæ¨¡å‹ ===============");
                 ITransformer trainedModel = trainingPipeline.Fit(trainData);
 
-                Console.WriteLine(DateTime.Now.ToString() + " >> " + "===== Ê¹ÓÃ²âÊÔÊı¾İÆÀ¹ÀÄ£ĞÍµÄ×¼È·ĞÔ =====");
+                Console.WriteLine(DateTime.Now.ToString() + " >> " + "===== ä½¿ç”¨æµ‹è¯•æ•°æ®è¯„ä¼°æ¨¡å‹çš„å‡†ç¡®æ€§ =====");
                 var predictions = trainedModel.Transform(testData);
                 var metrics = mlContext.MulticlassClassification.Evaluate(data: predictions, labelColumnName: "Number", scoreColumnName: "Score");
 
@@ -85,7 +84,7 @@ MNIST Êı¾İ¼¯°üº¬Êı×ÖµÄÊÖĞ´Í¼Ïñ£¬·¶Î§´Ó 0 µ½ 9¡£Êı¾İÀ´Ô´£ºUCI »úÆ÷Ñ§Ï°´æ´¢¿âhttp:
 
                 mlContext.Model.Save(trainedModel, trainData.Schema, ModelPath);
 
-                Console.WriteLine(DateTime.Now.ToString() + " >> " + "Ä£ĞÍÒÑ±£´æµ½£º {0}", ModelPath);
+                Console.WriteLine(DateTime.Now.ToString() + " >> " + "æ¨¡å‹å·²ä¿å­˜åˆ°ï¼š {0}", ModelPath);
             }
             catch (Exception ex)
             {
@@ -94,7 +93,7 @@ MNIST Êı¾İ¼¯°üº¬Êı×ÖµÄÊÖĞ´Í¼Ïñ£¬·¶Î§´Ó 0 µ½ 9¡£Êı¾İÀ´Ô´£ºUCI »úÆ÷Ñ§Ï°´æ´¢¿âhttp:
             }
 ```
 
-Ä£ĞÍ²âÊÔ£º
+æ¨¡å‹æµ‹è¯•ï¼š
 ```CSharp
             ITransformer trainedModel = mlContext.Model.Load(ModelPath, out var modelInputSchema);
 
@@ -103,7 +102,7 @@ MNIST Êı¾İ¼¯°üº¬Êı×ÖµÄÊÖĞ´Í¼Ïñ£¬·¶Î§´Ó 0 µ½ 9¡£Êı¾İÀ´Ô´£ºUCI »úÆ÷Ñ§Ï°´æ´¢¿âhttp:
 
             var resultprediction1 = predEngine.Predict(SampleMNISTData.MNIST1);
 
-            Console.WriteLine($"²âÊÔ: 1     Ô¤²â¸ÅÂÊ               :       0:  {resultprediction1.Score[0]:0.####}");
+            Console.WriteLine($"æµ‹è¯•: 1     é¢„æµ‹æ¦‚ç‡               :       0:  {resultprediction1.Score[0]:0.####}");
             Console.WriteLine($"                                           1:  {resultprediction1.Score[1]:0.####}");
             Console.WriteLine($"                                           2:  {resultprediction1.Score[2]:0.####}");
             Console.WriteLine($"                                           3:  {resultprediction1.Score[3]:0.####}");
@@ -114,9 +113,9 @@ MNIST Êı¾İ¼¯°üº¬Êı×ÖµÄÊÖĞ´Í¼Ïñ£¬·¶Î§´Ó 0 µ½ 9¡£Êı¾İÀ´Ô´£ºUCI »úÆ÷Ñ§Ï°´æ´¢¿âhttp:
             Console.WriteLine($"                                           8:  {resultprediction1.Score[8]:0.####}");
             Console.WriteLine($"                                           9:  {resultprediction1.Score[9]:0.####}");
 ```
-²âÊÔ£¬²é¿´Ô¤²â¸ÅÂÊ
+æµ‹è¯•ï¼ŒæŸ¥çœ‹é¢„æµ‹æ¦‚ç‡
 
-## Ê¾Àı´úÂë https://github.com/LEX-2025/MNIST-APP
+## ç¤ºä¾‹ä»£ç  https://github.com/LEX-2025/MNIST-APP
 
 
  
